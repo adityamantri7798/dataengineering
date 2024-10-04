@@ -1,0 +1,6 @@
+	below are column expected in de table as per tds metadata lineage sheet ,but these columns are not availbe in latested RL dump we got for last deployment please advice here
+	wbc
+	ticertdate			tb_claims_de
+	rejreasondesc		tb_dpclaims_de
+	pendingenddate		tb_isclaims_de
+	let me knoe the any update on that
