@@ -1,0 +1,7 @@
+CASE WHEN greatest(driver.cdc_source_commit_date, s1.cdc_source_commit_date) >= s3.cdc_source_commit_date 
+	   AND greatest(driver.cdc_source_commit_date, s1.cdc_source_commit_date) < s3.next_commit_date
+	  THEN 1
+	  WHEN greatest(driver.cdc_source_commit_date, s1.cdc_source_commit_date) < s3.cdc_source_commit_date 
+	   AND least(driver.next_commit_date,s1.next_commit_date) > s3.cdc_source_commit_date
+	  THEN 1
+	  ELSE 0 END
