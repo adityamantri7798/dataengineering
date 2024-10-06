@@ -1,0 +1,125 @@
+SELECT target.business_key, driver.checksum d_check, target.checksum AS t_check from (
+    SELECT business_key,
+        md5(
+            concat(
+                coalesce(cast(cast(cast(tran_id AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(cast(app_code AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(tran_type AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+               	coalesce(cast(cast(cast(reference AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(entity_id AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(nric AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(name AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(pay_method AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(pay_mode AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(pay_mode AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(cheque_no AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(chq_ref AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(remarks AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(amount AS decimal) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(req_officer AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(req_date AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(approval_date AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(approval_date_2 AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(approve_officer AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(approve_officer_2 AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(auth_code AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(bank_id AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(last_upd_officer AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(status AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(status_date AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(process_date AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(despatch_mode AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(old_cheque_no AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(chq_replace_date AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(chq_clear_date AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(fn_note	 AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+
+                coalesce(cast(cast(commission AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(agent_code AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(policy_code AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(gst_comm AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(other_ref AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+				coalesce(cast(cast(castoffset_tran_id AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+				coalesce(cast(cast(offset_type AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+				coalesce(cast(cast(cast(hold AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(offset_recp_paymt_id AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(branch AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(chq_bank AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(product_code AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(si_id AS int)AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(dit_gst AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(internal_remarks AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+
+                coalesce(cast(cast(bank_account AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+				coalesce(cast(cast(cast(cancel_flag AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+
+				coalesce(cast(cast(cast(original_tran_id AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary))
+            )
+        ) AS checksum
+    FROM tl_wbas_def.tb_wbastrandisb_hist WHERE active_record_ind IN ('Y', 'y')
+) target
+INNER JOIN (
+    SELECT business_key,
+        md5(
+            concat(
+                coalesce(cast(cast(cast(tran_id AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(cast(app_code AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(tran_type AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+               	coalesce(cast(cast(cast(reference AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(entity_id AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(nric AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(name AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(pay_method AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(pay_mode AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(pay_mode AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(cheque_no AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(chq_ref AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(remarks AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(amount AS decimal) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(cast(req_officer AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(req_date AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+		coalesce(cast(cast(approval_date AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(approval_date_2 AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(approve_officer AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(approve_officer_2 AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(auth_code AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(bank_id AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(last_upd_officer AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(status AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(status_date AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(process_date AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(despatch_mode AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(old_cheque_no AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(chq_replace_date AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(chq_clear_date AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(fn_note	 AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+
+                coalesce(cast(cast(commission AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(agent_code AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(policy_code AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(gst_comm AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(other_ref AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+				coalesce(cast(cast(castoffset_tran_id AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+				coalesce(cast(cast(offset_type AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+				coalesce(cast(cast(cast(hold AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(offset_recp_paymt_id AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(branch AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(chq_bank AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(product_code AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(si_id AS int)AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(dit_gst AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+                coalesce(cast(cast(internal_remarks AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+
+                coalesce(cast(cast(bank_account AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+				coalesce(cast(cast(cast(cancel_flag AS varchar) AS varbinary), cast('NULL' AS varbinary)),
+
+				coalesce(cast(cast(cast(original_tran_id AS int) AS varchar) AS varbinary), cast('NULL' AS varbinary))
+
+            )
+        ) AS checksum,dml_ind,row_number() OVER (PARTITION BY business_key ORDER BY cdc_source_commit_date DESC) AS rnk
+    FROM rl_wbas_def.tb_wbastrandisb_de d
+        WHERE dml_ind NOT IN ('D', 'd')
+) driver
+ON target.business_key = driver.business_key
+WHERE driver.rnk = 1
+AND target.checksum <> driver.checksum;
